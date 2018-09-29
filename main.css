@@ -4,6 +4,12 @@
     -webkit-animation:spin 4s linear infinite;
     -moz-animation:spin 4s linear infinite;
     animation:spin 4s linear infinite;
+    max-width: 55px;
+    max-height: 55px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    display: block;
     }
     @-moz-keyframes spin { 100% { -moz-transform: rotate(360deg); } }
     @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
