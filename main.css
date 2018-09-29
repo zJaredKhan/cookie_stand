@@ -1,4 +1,4 @@
-/* The animation code */
+/* The animation code - found on Stack Overflow */
 
 .fish {  
     -webkit-animation:spin 4s linear infinite;
@@ -9,3 +9,6 @@
     @-webkit-keyframes spin { 100% { -webkit-transform: rotate(360deg); } }
     @keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
 
+* {
+    background-color: aqua
+}
