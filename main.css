@@ -17,6 +17,9 @@ h2 {
     text-align: center;
 }
 
+div {
+    text-align: center;
+}
 .stores {
     display: inline-block;
     width: 200px;
