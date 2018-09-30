@@ -6,6 +6,7 @@ var pikePlace = {
   max: 65,
   avgCookiesPerSale: 6.3,
   cookiesSoldEachHour: [],
+  cookiesSum: [],
   hoursOpen: ['6:00 AM - ', '7:00 AM - ', '8:00 AM - ', '9:00 AM - ', '10:00 AM - ', '11:00 AM - ', '12:00 PM - ', '1:00 PM - ', '2:00 PM - ', '3:00 PM - ', '4:00 PM - ', '5:00 PM - ', '6:00 PM - ', '7:00 PM - ', '8:00 PM - ']
 };
 
@@ -18,9 +19,13 @@ pikePlace.calculateCustomersPerHours = function(){
 pikePlace.calculateCookiesSoldEachHours = function(){
   for(var i = 0; i < 15; i++){
     var cookies = Math.round(this.calculateCustomersPerHours() * this.avgCookiesPerSale);
+    this.cookiesSum.push(cookies);
     var hours = this.hoursOpen[i];
     this.cookiesSoldEachHour.push(hours + cookies);
   }
+  //reducing (finding sum of array - found at https://medium.freecodecamp.org/reduce-f47a7da511a9 )
+  const sum = this.cookiesSum.reduce((total, amount) => total + amount);
+  this.cookiesSoldEachHour.push('Total : ' + sum + ' cookies sold');
 };
 console.log(pikePlace.cookiesSoldEachHour);
 
@@ -50,6 +55,7 @@ var seaTac = {
   max: 24,
   avgCookiesPerSale: 1.2,
   cookiesSoldEachHour: [],
+  cookiesSum: [],
   hoursOpen: ['6:00 AM - ', '7:00 AM - ', '8:00 AM - ', '9:00 AM - ', '10:00 AM - ', '11:00 AM - ', '12:00 PM - ', '1:00 PM - ', '2:00 PM - ', '3:00 PM - ', '4:00 PM - ', '5:00 PM - ', '6:00 PM - ', '7:00 PM - ', '8:00 PM - ']
 };
 
@@ -63,8 +69,12 @@ seaTac.calculateCookiesSoldEachHours = function(){
   for(var i = 0; i < 15; i++){
     var cookies = Math.round(this.calculateCustomersPerHours() * this.avgCookiesPerSale);
     var hours = this.hoursOpen[i];
+    this.cookiesSum.push(cookies);
     this.cookiesSoldEachHour.push(hours + cookies);
   }
+  //reducing (finding sum of array - found at https://medium.freecodecamp.org/reduce-f47a7da511a9 )
+  const sum = this.cookiesSum.reduce((total, amount) => total + amount);
+  this.cookiesSoldEachHour.push('Total : ' + sum + ' cookies sold');
 };
 console.log(seaTac.cookiesSoldEachHour);
 
@@ -94,6 +104,7 @@ var seaCenter = {
   max: 38,
   avgCookiesPerSale: 3.7,
   cookiesSoldEachHour: [],
+  cookiesSum: [],
   hoursOpen: ['6:00 AM - ', '7:00 AM - ', '8:00 AM - ', '9:00 AM - ', '10:00 AM - ', '11:00 AM - ', '12:00 PM - ', '1:00 PM - ', '2:00 PM - ', '3:00 PM - ', '4:00 PM - ', '5:00 PM - ', '6:00 PM - ', '7:00 PM - ', '8:00 PM - ']
 };
 
@@ -106,9 +117,13 @@ seaCenter.calculateCustomersPerHours = function(){
 seaCenter.calculateCookiesSoldEachHours = function(){
   for(var i = 0; i < 15; i++){
     var cookies = Math.round(this.calculateCustomersPerHours() * this.avgCookiesPerSale);
+    this.cookiesSum.push(cookies);
     var hours = this.hoursOpen[i];
     this.cookiesSoldEachHour.push(hours + cookies);
   }
+  //reducing (finding sum of array - found at https://medium.freecodecamp.org/reduce-f47a7da511a9 )
+  const sum = this.cookiesSum.reduce((total, amount) => total + amount);
+  this.cookiesSoldEachHour.push('Total : ' + sum + ' cookies sold');
 };
 console.log(seaCenter.cookiesSoldEachHour);
 
@@ -138,6 +153,7 @@ var capHill = {
   max: 38,
   avgCookiesPerSale: 3.7,
   cookiesSoldEachHour: [],
+  cookiesSum: [],
   hoursOpen: ['6:00 AM - ', '7:00 AM - ', '8:00 AM - ', '9:00 AM - ', '10:00 AM - ', '11:00 AM - ', '12:00 PM - ', '1:00 PM - ', '2:00 PM - ', '3:00 PM - ', '4:00 PM - ', '5:00 PM - ', '6:00 PM - ', '7:00 PM - ', '8:00 PM - ']
 };
 
@@ -150,9 +166,13 @@ capHill.calculateCustomersPerHours = function(){
 capHill.calculateCookiesSoldEachHours = function(){
   for(var i = 0; i < 15; i++){
     var cookies = Math.round(this.calculateCustomersPerHours() * this.avgCookiesPerSale);
+    this.cookiesSum.push(cookies);
     var hours = this.hoursOpen[i];
     this.cookiesSoldEachHour.push(hours + cookies);
   }
+  //reducing (finding sum of array - found at https://medium.freecodecamp.org/reduce-f47a7da511a9 )
+  const sum = this.cookiesSum.reduce((total, amount) => total + amount);
+  this.cookiesSoldEachHour.push('Total : ' + sum + ' cookies sold');
 };
 console.log(capHill.cookiesSoldEachHour);
 
@@ -182,6 +202,7 @@ var alki = {
   max: 38,
   avgCookiesPerSale: 3.7,
   cookiesSoldEachHour: [],
+  cookiesSum: [],
   hoursOpen: ['6:00 AM - ', '7:00 AM - ', '8:00 AM - ', '9:00 AM - ', '10:00 AM - ', '11:00 AM - ', '12:00 PM - ', '1:00 PM - ', '2:00 PM - ', '3:00 PM - ', '4:00 PM - ', '5:00 PM - ', '6:00 PM - ', '7:00 PM - ', '8:00 PM - ']
 };
 
@@ -194,9 +215,13 @@ alki.calculateCustomersPerHours = function(){
 alki.calculateCookiesSoldEachHours = function(){
   for(var i = 0; i < 15; i++){
     var cookies = Math.round(this.calculateCustomersPerHours() * this.avgCookiesPerSale);
+    this.cookiesSum.push(cookies);
     var hours = this.hoursOpen[i];
     this.cookiesSoldEachHour.push(hours + cookies);
   }
+  //reducing (finding sum of array - found at https://medium.freecodecamp.org/reduce-f47a7da511a9 )
+  const sum = this.cookiesSum.reduce((total, amount) => total + amount);
+  this.cookiesSoldEachHour.push('Total : ' + sum + ' cookies sold');
 };
 console.log(alki.cookiesSoldEachHour);
 
