@@ -26,8 +26,8 @@ h2 {
 div {
     text-align: center;
 }
-.stores {
-    display: inline-block;
+.box {
+    display: block;
     width: 210px;
     border: 1px solid black;
     text-align: justify;
