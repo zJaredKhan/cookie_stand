@@ -1,64 +1,78 @@
-'use strict';
+var hoursOpen = ["10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm"];
+var table = document.getElementById("stores");
+var franchiseLocations = []
+var pikePlace = franchiseLocations.push(new Franchise ('Pike Place', 8, 17, 88, 5.2, 'pikeRow'));
+var seaTac = franchiseLocations.push(new Franchise ('SeaTac Airport', 8, 6, 24, 1.2, 'seaTacRow'));
+var southcenter = franchiseLocations.push(new Franchise ('Southcenter', 8, 11, 38, 1.9, 'southcenterRow'));
+var bellevueSquare = franchiseLocations.push(new Franchise ('Bellevue Square', 8, 20, 48, 3.3, 'bellevueRow'));
+var alki = franchiseLocations.push(new Franchise ('Alki', 8, 3, 24, 2.6, 'alkiRow'));
 
-var hoursOpen = ['6:00 AM - ', '7:00 AM - ', '8:00 AM - ', '9:00 AM - ', '10:00 AM - ', '11:00 AM - ', '12:00 PM - ', '1:00 PM - ', '2:00 PM - ', '3:00 PM - ', '4:00 PM - ', '5:00 PM - ', '6:00 PM - ', '7:00 PM - ', '8:00 PM - '];
-
-function Franchise(name,min,max,avgCookiesPerSale,hoursOpen){
-  this.name = name;
+function Franchise(storeLocation, hoursOpen, min, max, avgCookiesPerSale, storeRow) {
+  this.name = storeLocation;
   this.min = min;
   this.max = max;
   this.avgCookiesPerSale = avgCookiesPerSale;
   this.cookiesSoldEachHour = [];
-  this.cookiesSum = [],
-  this.hoursOpen = hoursOpen;
-  // this.calculateCookiesSoldEachHours = calculateCookiesSoldEachHours;
-  // this.calculateCustomersPerHours = calculateCustomersPerHours;
-  // this.renderHours = renderHours;
+  this.totalSales = 0;
+};
+
+Franchise.prototype.maxcalculateCustomersPerHours = function() {
+  return Math.random() * (this.max - this.min) + this.min;
+};
+Franchise.prototype.getHourlySales = function () {
+  for (var i = 0; i< hoursOpen.length; i++) {
+    var rand = Math.floor(this.maxcalculateCustomersPerHours() * this.avgCookiesPerSale);
+    this.cookiesSoldEachHour.push(rand);
+    this.totalSales += rand;
+  }
+};
+
+Franchise.prototype.render = function() {
+  var storeSection = document.getElementById('stores');
+  var row = document.createElement('tr');
+  var td = document.createElement('td');
+  td.innerHTML = this.name;
+  row.appendChild(td);
+
+  for (var i = 0; i < this.cookiesSoldEachHour.length; i++) {
+    var tdHourly = document.createElement('td');
+    tdHourly.innerHTML = this.cookiesSoldEachHour[i];
+    row.appendChild(tdHourly);
+  }
+
+  var total = document.createElement('td');
+  total.innerHTML = this.totalSales;
+  row.appendChild(total);
+
+  storeSection.appendChild(row);
+};
+
+function generateTableHeading(){
+  var storeSection = document.getElementById('stores');
+  var thead = document.createElement('thead');
+  storeSection.appendChild(thead);
+  var row = document.createElement('tr');
+  thead.appendChild(row);
+  var td = document.createElement('td');
+  td.innerHTML = "Location";
+  row.appendChild(td);
+
+  for (var i = 0; i < hoursOpen.length; i++) {
+    var td = document.createElement('td');
+    td.innerHTML = hoursOpen[i];
+    row.appendChild(td);
+  }
+
+  var tdTotal = document.createElement('th');
+  tdTotal.textContent = this.totalSales;
+  tdTotal.innerHTML = "Total";
+  row.appendChild(tdTotal);
+  storeSection.appendChild(row);
 }
 
-Franchise.prototype.calculateCustomersPerHours = function() {
-  var randomAmount = Math.floor(Math.random() * (this.max - this.min +1) + this.min);
-  return Math.round(randomAmount);
-};
-
-
-Franchise.prototype.calculateCookiesSoldEachHours = function() {
-  for(var i = 0; i < 15; i++){
-    var cookies = Math.round(this.calculateCustomersPerHours() * this.avgCookiesPerSale);
-    this.cookiesSum.push(cookies);
-    var hours = this.hoursOpen[i];
-    this.cookiesSoldEachHour.push(hours + cookies);
-  }
-  //reducing (finding sum of array - found at https://medium.freecodecamp.org/reduce-f47a7da511a9 )
-  const sum = this.cookiesSum.reduce((total, amount) => total + amount);
-  this.cookiesSoldEachHour.push('Total : ' + sum + ' cookies sold');
-};
-
-var pikePlace = new Franchise('1st and Pike',23,65,6.3,hoursOpen);
-var seaTac = new Franchise('SeaTac Airport', 3,24,1.2,hoursOpen);
-var seaCenter = new Franchise('Seattle Center', 11,38,3.7,hoursOpen);
-var capHill = new Franchise('Capitol Hill', 20,38,2.3,hoursOpen);
-var alki = new Franchise('Alki Beach',2,16,4.6,hoursOpen);
-
-Franchise.prototype.renderHours = function() {
-  this.calculateCookiesSoldEachHours();
-  var storesContainer = document.getElementById('franchies');
-  console.log(storesContainer);
-  var headerEl = document.createElement('h2');
-  headerEl.textContent = this.name;
-  storesContainer.appendChild(headerEl);
-  var ulEl = document.createElement('ul'); //create an element
-
-  for(var i in this.cookiesSoldEachHour){
-    var listItemEl = document.createElement('li');
-    listItemEl.textContent = this.cookiesSoldEachHour[i];
-    ulEl.appendChild(listItemEl);
-  }
-  storesContainer.appendChild(ulEl);
-};
-
-pikePlace.renderHours();
-seaTac.renderHours();
-seaCenter.renderHours();
-capHill.renderHours();
-alki.renderHours();
+generateTableHeading();
+franchiseLocations.forEach(function(store){
+  store.getHourlySales();
+  store.render();
+});
 
